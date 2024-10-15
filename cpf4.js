@@ -32,8 +32,6 @@ function gerarCpf4() {
     }
 }
 // Exemplo de uso
-
-const cpfGerado = gerarCpf4();
 function exibirCpf4() {
     const cpfGerado = gerarCpf4();
     document.getElementById("cpf4-resultado").innerText = `: ${cpfGerado}`;
