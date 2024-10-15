@@ -75,8 +75,13 @@ function gerarCpf2() {
 // Exemplo de uso
 console.log(gerarCpf2());
 
-// Exemplo de uso
 function exibirCpf2() {
-    const cpfGerado = gerarCpf2();
-    document.getElementById("cpf2-resultado").innerText = `: ${cpfGerado}`;
-}
+        const cpfGerado2 = gerarCpf2();
+        const primeiroDv = parseInt(cpfGerado2[9]); // Penúltimo dígito no CPF gerado
+
+        if (primeiroDv === 7 || primeiroDv === 9) {
+            document.getElementById("cpf2-resultado").innerText = `AVISO: O CPF gerado tem o penúltimo dígito verificador como ${primeiroDv}. CPF: ${cpfGerado2}, GERE UM NOVO CPF!`;
+        } else {
+            document.getElementById("cpf2-resultado").innerText = `: ${cpfGerado2}`;
+        }
+    }
