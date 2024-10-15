@@ -6,18 +6,18 @@ function calcularDvCpf(digitos, pesos) {
     return dv < 10 ? dv : 0;
 }
 
-// Função para garantir que o primeiro dígito seja ímpar (diferente de 7 ou 9)
+// Função para garantir que o primeiro dígito seja ímpar e diferente de 7 ou 9
 function ajustarPrimeiroDv(dv) {
     if (dv % 2 === 0) { // Se for par, soma 1 para torná-lo ímpar
         dv += 1;
     }
-    if (dv === 7 || dv === 9) { // Se for 7 ou 9, ajusta para outro ímpar (ex: 5 ou 3)
-        dv = dv === 7 ? 5 : 3;
+    if (dv === 7 || dv === 9) { // Se for 7 ou 9, ajusta para outro ímpar
+        dv = dv === 7 ? 5 : 3; // Escolhe 5 se for 7, ou 3 se for 9
     }
     return dv;
 }
 
-// Função para garantir que o segundo dígito seja ímpar (não pode ser 9)
+// Função para garantir que o segundo dígito seja ímpar
 function ajustarSegundoDv(dv) {
     if (dv % 2 === 0) { // Se for par, soma 1 para torná-lo ímpar
         dv += 1;
@@ -50,28 +50,27 @@ function validarCpf(cpf) {
 
 // Função para gerar CPF válido com as restrições dos dígitos verificadores
 function gerarCpf3() {
-    const cpf = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10)); // Base do CPF
+    while (true) {
+        const cpf = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10)); // Base do CPF
 
-    const pesosPrimeiroDv = [10, 9, 8, 7, 6, 5, 4, 3, 2];
-    const pesosSegundoDv = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+        const pesosPrimeiroDv = [10, 9, 8, 7, 6, 5, 4, 3, 2];
+        const pesosSegundoDv = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 
-    // Calcular o primeiro dígito verificador
-    let primeiroDv = calcularDvCpf(cpf, pesosPrimeiroDv);
-    primeiroDv = ajustarPrimeiroDv(primeiroDv); // Ajustar para ser ímpar (diferente de 7 ou 9)
-    cpf.push(primeiroDv);
+        // Calcular o primeiro dígito verificador
+        let primeiroDv = calcularDvCpf(cpf, pesosPrimeiroDv);
+        primeiroDv = ajustarPrimeiroDv(primeiroDv); // Ajustar para ser ímpar e diferente de 7 ou 9
+        cpf.push(primeiroDv);
 
-    // Calcular o segundo dígito verificador
-    let segundoDv = calcularDvCpf(cpf, pesosSegundoDv);
-    segundoDv = ajustarSegundoDv(segundoDv); // Ajustar para ser ímpar
-    cpf.push(segundoDv);
+        // Calcular o segundo dígito verificador
+        let segundoDv = calcularDvCpf(cpf, pesosSegundoDv);
+        segundoDv = ajustarSegundoDv(segundoDv); // Ajustar para ser ímpar
+        cpf.push(segundoDv);
 
-    // Verificar se o CPF gerado é válido
-    if (validarCpf(cpf)) {
-        // Transformar o CPF em string e retornar
-        return cpf.join('');
-    } else {
-        // Tentar novamente até gerar um CPF válido
-        return gerarCpf3();
+        // Verificar se o CPF gerado é válido
+        if (validarCpf(cpf)) {
+            // Transformar o CPF em string e retornar
+            return cpf.join('');
+        }
     }
 }
 
