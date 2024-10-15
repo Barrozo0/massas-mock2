@@ -5,96 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de CPF e CNPJ</title>
     <style>
-        /* Estilo básico */
+        /* Estilos básicos para a página */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f5;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h1, h2 {
             color: #333;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
         }
 
-        h1 {
-            color: #4CAF50;
-            font-size: 36px;
-            margin-bottom: 20px;
+        /* Estilo do contêiner dos botões e resultados */
+        .container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        h2 {
-            color: #333;
-            font-size: 28px;
-            margin-top: 30px;
-        }
-
-        /* Estilo para os botões */
+        /* Estilo do botão */
         button {
-            background-color: #4CAF50;
+            margin-right: 10px;
+            padding: 10px 15px;
+            background-color: #083b86;
             color: white;
             border: none;
-            padding: 15px 25px;
-            font-size: 16px;
-            cursor: pointer;
             border-radius: 5px;
-            margin: 10px;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #476ca3;
         }
 
-        /* Estilo para os parágrafos */
+        /* Estilo do parágrafo de resultado */
         p {
-            font-size: 18px;
-            margin-top: 10px;
-            color: #555;
-        }
-
-        /* Estilo para o contêiner principal */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <h1>Gerador de CPF e CNPJ - MOCK</h1>
+
+    <!-- CPF FRESH SEGMENTO AUTORIZADO -->
+    <h2>Gerar CPF</h2>
     <div class="container">
-        <h1>Gerador de CPF e CNPJ - MOCK</h1>
-
-        <!-- CPF FRESH SEGMENTO AUTORIZADO -->
-        <h2>Gerar CPF</h2>
-        <button onclick="exibirCpf1()">Gerar CPF FRESH - SEGMENTO AUTORIZADO</button>
+        <button onclick="exibirCpf1()">CPF FRESH SEGMENTO AUTORIZADO</button>
         <p id="cpf1-resultado"></p>
-        <!-- CPF BASE - AUTORIZADO -->
-        <button onclick="exibirCpf2()">Gerar CPF BASE - AUTORIZADO</button>
+    </div>
+    <!-- CPF BASE - AUTORIZADO -->
+    <div class="container">
+        <button onclick="exibirCpf2()">CPF BASE - AUTORIZADO</button>
         <p id="cpf2-resultado"></p>
-        <!-- CPF BASE - NÃO AUTORIZADO -->
-        <button onclick="exibirCpf3()">Gerar CPF BASE - NÃO AUTORIZADO</button>
+    </div>
+    <!-- CPF BASE - NÃO AUTORIZADO -->
+    <div class="container">
+        <button onclick="exibirCpf3()">CPF BASE - NÃO AUTORIZADO</button>
         <p id="cpf3-resultado"></p>
-        <!-- CPF NÃO EXISTE - NÃO AUTORIZADO -->
-        <button onclick="exibirCpf4()">Gerar CPF NÃO EXISTE - NÃO AUTORIZADO</button>
+    </div>
+    <!-- CPF NÃO EXISTE - NÃO AUTORIZADO -->
+    <div class="container">
+        <button onclick="exibirCpf4()">CPF NÃO EXISTE - NÃO AUTORIZADO</button>
         <p id="cpf4-resultado"></p>
-        <!-- CPF NÃO EXISTE SFA - NÃO AUTORIZADO -->
-        <button onclick="exibirCpf5()">Gerar CPF NÃO EXISTE SFA - NÃO AUTORIZADO</button>
+    </div>
+    <!-- CPF NÃO EXISTE SFA - NÃO AUTORIZADO -->
+    <div class="container">
+        <button onclick="exibirCpf5()">CPF NÃO EXISTE SFA - NÃO AUTORIZADO</button>
         <p id="cpf5-resultado"></p>
+    </div>
 
-        <!-- CNPJ BASE SEGMENTO AUTORIZADO-->
-        <h2>Gerar CNPJ</h2>
-        <button onclick="exibirCnpj1()">Gerar CNPJ BASE SEGMENTO AUTORIZADO</button>
+    <!-- CNPJ BASE SEGMENTO AUTORIZADO-->
+    <h2>Gerar CNPJ</h2>
+    <div class="container">
+        <button onclick="exibirCnpj1()">CNPJ BASE SEGMENTO AUTORIZADO</button>
         <p id="cnpj1-resultado"></p>
-        <!-- CNPJ FRESH - SEGMENTO AUTORIZADO -->
-        <button onclick="exibirCnpj2()">Gerar CNPJ FRESH - SEGMENTO AUTORIZADO</button>
+    </div>
+    <!-- CNPJ FRESH - SEGMENTO AUTORIZADO -->
+    <div class="container">
+        <button onclick="exibirCnpj2()">CNPJ FRESH - SEGMENTO AUTORIZADO</button>
         <p id="cnpj2-resultado"></p>
-        <!-- CNPJ NÃO EXISTE - SEGMENTO NÃO VALIDADO -->
-        <button onclick="exibirCnpj3()">Gerar CNPJ NÃO EXISTE - SEGMENTO NÃO VALIDADO</button>
+    </div>
+    <!-- CNPJ NÃO EXISTE - SEGMENTO NÃO VALIDADO -->
+    <div class="container">
+        <button onclick="exibirCnpj3()">CNPJ NÃO EXISTE - SEGMENTO NÃO VALIDADO</button>
         <p id="cnpj3-resultado"></p>
-        <!-- BASE SEGMENTO NÃO AUTORIZADO -->
-        <button onclick="exibirCnpj4()">Gerar BASE - SEGMENTO NÃO AUTORIZADO</button>
+    </div>
+    <!-- BASE SEGMENTO NÃO AUTORIZADO -->
+    <div class="container">
+        <button onclick="exibirCnpj4()">BASE SEGMENTO NÃO AUTORIZADO</button>
         <p id="cnpj4-resultado"></p>
     </div>
 

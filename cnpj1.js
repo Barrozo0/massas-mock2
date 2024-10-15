@@ -59,5 +59,5 @@ console.log("CNPJ Gerado:", gerarCnpj1());
 
 function exibirCnpj1() {
     const cnpjGerado = gerarCnpj1();
-    document.getElementById("cnpj1-resultado").innerText = `CNPJ1 Gerado: ${cnpjGerado}`;
+    document.getElementById("cnpj1-resultado").innerText = `: ${cnpjGerado}`;
 }

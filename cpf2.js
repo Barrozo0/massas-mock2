@@ -78,5 +78,5 @@ console.log(gerarCpf2());
 // Exemplo de uso
 function exibirCpf2() {
     const cpfGerado = gerarCpf2();
-    document.getElementById("cpf2-resultado").innerText = `CPF Gerado: ${cpfGerado}`;
+    document.getElementById("cpf2-resultado").innerText = `: ${cpfGerado}`;
 }

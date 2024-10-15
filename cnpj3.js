@@ -47,5 +47,5 @@ console.log(gerarCnpj3());
 // Exemplo de uso
 function exibirCnpj3() {
     const cpfGerado = gerarCnpj3();
-    document.getElementById("cnpj3-resultado").innerText = `CPF Gerado: ${cpfGerado}`;
+    document.getElementById("cnpj3-resultado").innerText = `: ${cpfGerado}`;
 }

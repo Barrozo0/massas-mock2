@@ -81,5 +81,5 @@ console.log(gerarCpf3());
 // Exemplo de uso
 function exibirCpf3() {
     const cpfGerado = gerarCpf3();
-    document.getElementById("cpf3-resultado").innerText = `CPF Gerado: ${cpfGerado}`;
+    document.getElementById("cpf3-resultado").innerText = `: ${cpfGerado}`;
 }
