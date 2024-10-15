@@ -78,7 +78,7 @@ function gerarCpf3() {
 // Exemplo de uso
 console.log(gerarCpf3());
 
-// Exemplo de uso
+// Função para exibir o CPF gerado no HTML
 function exibirCpf3() {
     const cpfGerado = gerarCpf3();
     document.getElementById("cpf3-resultado").innerText = `: ${cpfGerado}`;
