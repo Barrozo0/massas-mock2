@@ -39,7 +39,7 @@ function gerarCpf1() {
 }
 
 // Exemplo de uso
-console.log(gerarCpf());
+console.log(gerarCpf1());
 
 // Exemplo de uso
 function exibirCpf1() {

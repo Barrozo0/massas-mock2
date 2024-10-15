@@ -31,8 +31,9 @@ function gerarCpf4() {
         return cpf.join('');
     }
 }
-
 // Exemplo de uso
+
+const cpfGerado = gerarCpf4();
 function exibirCpf4() {
     const cpfGerado = gerarCpf4();
     document.getElementById("cpf4-resultado").innerText = `: ${cpfGerado}`;
