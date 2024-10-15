@@ -5,7 +5,7 @@ function calcularDvCnpj(digitos, pesos) {
     return dv < 10 ? dv : 0;
 }
 
-// Função para gerar CNPJ com o segundo dígito verificador ímpar
+// Função para gerar CNPJ com dígitos verificadores iguais a 9
 function gerarCnpj3() {
     while (true) {
         // Gera os primeiros 12 dígitos do CNPJ
@@ -28,9 +28,9 @@ function gerarCnpj3() {
         // Calcula o segundo dígito verificador
         const segundoDv = calcularDvCnpj(cnpj, pesosSegundoDv);
 
-        // Verifica se o segundo dígito verificador é ímpar
-        if (segundoDv % 2 === 0) {
-            continue; // Gera um novo CNPJ se o segundo dígito verificador não for ímpar
+        // Verifica se o segundo dígito verificador é 9
+        if (segundoDv !== 9) {
+            continue; // Gera um novo CNPJ se o segundo dígito verificador não for 9
         }
 
         cnpj.push(segundoDv);
@@ -43,8 +43,8 @@ function gerarCnpj3() {
 // Exemplo de uso
 console.log(gerarCnpj3());
 
-// Função para exibir o CNPJ gerado no HTML
+// Exemplo de uso
 function exibirCnpj3() {
-    const cnpjGerado = gerarCnpj3();
-    document.getElementById("cnpj3-resultado").innerText = `: ${cnpjGerado}`;
+    const cpfGerado = gerarCnpj3();
+    document.getElementById("cnpj3-resultado").innerText = `: ${cpfGerado}`;
 }
