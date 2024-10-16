@@ -6,112 +6,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de CPF e CNPJ</title>
     <style>
-        /* Estilos básicos para a página */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f0f0f0;
-        }
-
-        h1, h2 {
+            background-color: #e0e7ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
             color: #333;
         }
 
-        /* Estilo do contêiner dos botões e resultados */
-        .container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+        h1 {
+            color: #083b86;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        /* Estilo do botão */
+        h2 {
+            color: #476ca3;
+            font-size: 1.6em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
         button {
-            margin-right: 10px;
-            padding: 10px 15px;
+            padding: 10px 20px;
             background-color: #083b86;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         button:hover {
             background-color: #476ca3;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
-        /* Estilo do parágrafo de resultado */
         p {
+            font-size: 1em;
             margin: 0;
+            color: #083b86;
             font-weight: bold;
+            max-width: 65%;
+            word-break: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            position: relative;
+        }
+
+        p.copiado {
+            color: green;
+            font-weight: bold;
+        }
+
+        /* Tooltip estilo */
+        .tooltip {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 0.9em;
+            position: absolute;
+            bottom: 110%; /* Posiciona o tooltip acima do texto */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+            left: 93%;
+        }
+
+        /* Mostra o tooltip ao passar o mouse */
+        .container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
-<body>
 
-<!-- Scripts de CPF -->
+<body>
+    <h1>Gerador de CPF e CNPJ</h1>
+
+    <h2>Gerar CPF</h2>
+    <div class="container">
+        <button onclick="exibirCpf1()">CPF FRESH | AUTORIZADO</button>
+        <p id="cpf1-resultado" onclick="copiarTexto(this)"></p>
+    </div>
+    <div class="container">
+        <button onclick="exibirCpf2()">CPF BASE | AUTORIZADO</button>
+        <p id="cpf2-resultado" onclick="copiarTexto(this)"></p>
+    </div>
+    <div class="container">
+        <button onclick="exibirCpf3()">CPF BASE | NÃO AUTORIZADO</button>
+        <p id="cpf3-resultado" onclick="copiarTexto(this)"></p>
+    </div>
+    <div class="container">
+        <button onclick="exibirCpf4()">CPF NÃO EXISTE | NÃO AUTORIZADO</button>
+        <p id="cpf4-resultado" onclick="copiarTexto(this)"></p>
+    </div>
+    <div class="container">
+        <button onclick="exibirCpf5()">CPF NÃO EXISTE SFA | NÃO AUTORIZADO</button>
+        <p id="cpf5-resultado" onclick="copiarTexto(this)"></p>
+    </div>
+    <h2>Gerar CNPJ</h2>
+    <div class="container">
+        <button onclick="exibirCnpj1()">CNPJ BASE | SEGMENTO AUTORIZADO</button>
+        <p id="cnpj1-resultado" onclick="copiarTexto(this)"></p>       
+    </div>
+    <div class="container">
+        <button onclick="exibirCnpj2()">CNPJ FRESH | SEGMENTO AUTORIZADO</button>
+        <p id="cnpj2-resultado" onclick="copiarTexto(this)"></p>   
+    </div>
+    <div class="container">
+        <button onclick="exibirCnpj3()">CNPJ NÃO EXISTE | SEGMENTO NÃO VALIDADO</button>
+        <p id="cnpj3-resultado" onclick="copiarTexto(this)"></p>
+    </div>
+    <div class="container">
+        <button onclick="exibirCnpj4()">CNPJ BASE | SEGMENTO NÃO AUTORIZADO</button>
+        <p id="cnpj4-resultado" onclick="copiarTexto(this)"></p>   
+    </div>
+
+    <script>
+        function copiarTexto(elemento) {
+            const texto = elemento.innerText;
+
+            navigator.clipboard.writeText(texto)
+                .then(() => {
+                    elemento.innerText = "Copiado!";
+                    elemento.classList.add("copiado");
+
+                    // Restaura o texto original após 2 segundos
+                    setTimeout(() => {
+                        elemento.innerText = texto;
+                        elemento.classList.remove("copiado");
+                    }, 1000);
+                })
+                .catch(err => console.error("Erro ao copiar o texto: ", err));
+        }
+    </script>
+
+    <!-- Scripts de CPF e CNPJ -->
     <script src="cpf1.js"></script>
     <script src="cpf2.js"></script>
     <script src="cpf3.js"></script>
     <script src="cpf4.js"></script>
     <script src="cpf5.js"></script>
-
-    <!-- Scripts de CNPJ -->
     <script src="cnpj1.js"></script>
     <script src="cnpj2.js"></script>
     <script src="cnpj3.js"></script>
     <script src="cnpj4.js"></script>
-
-    <h1>Gerador de CPF e CNPJ - MOCK</h1>
-   
-    <!-- CPF FRESH SEGMENTO AUTORIZADO -->
-    <h2>Gerar CPF</h2>
-    <div class="container">
-        <button onclick="exibirCpf1()">CPF FRESH | AUTORIZADO</button>
-        <p id="cpf1-resultado"></p>
-    </div>
-    <!-- CPF BASE - AUTORIZADO -->
-    <div class="container">
-        <button onclick="exibirCpf2()">CPF BASE | AUTORIZADO</button>
-        <p id="cpf2-resultado"></p>
-    </div>
-    <!-- CPF BASE - NÃO AUTORIZADO -->
-    <div class="container">
-        <button onclick="exibirCpf3()">CPF BASE | NÃO AUTORIZADO</button>
-        <p id="cpf3-resultado"></p>
-    </div>
-    <!-- CPF NÃO EXISTE - NÃO AUTORIZADO -->
-    <div class="container">
-        <button onclick="exibirCpf4() ">CPF NÃO EXISTE | NÃO AUTORIZADO</button>
-        <p id="cpf4-resultado"></p>
-    </div>
-    <!-- CPF NÃO EXISTE SFA - NÃO AUTORIZADO -->
-    <div class="container">
-        <button onclick="exibirCpf5()">CPF NÃO EXISTE SFA | NÃO AUTORIZADO</button>
-        <p id="cpf5-resultado"></p>
-    </div>
-
-    <!-- CNPJ BASE SEGMENTO AUTORIZADO-->
-    <h2>Gerar CNPJ</h2>
-    <div class="container">
-        <button onclick="exibirCnpj1()">CNPJ BASE | SEGMENTO AUTORIZADO</button>
-        <p id="cnpj1-resultado"></p>
-    </div>
-    <!-- CNPJ FRESH - SEGMENTO AUTORIZADO -->
-    <div class="container">
-        <button onclick="exibirCnpj2()">CNPJ FRESH | SEGMENTO AUTORIZADO</button>
-        <p id="cnpj2-resultado"></p>
-    </div>
-    <!-- CNPJ NÃO EXISTE - SEGMENTO NÃO VALIDADO -->
-    <div class="container">
-        <button onclick="exibirCnpj3()">CNPJ NÃO EXISTE | SEGMENTO NÃO VALIDADO</button>
-        <p id="cnpj3-resultado"></p>
-    </div>
-    <!-- BASE SEGMENTO NÃO AUTORIZADO -->
-    <div class="container">
-        <button onclick="exibirCnpj4()">CNPJ BASE | SEGMENTO NÃO AUTORIZADO</button>
-        <p id="cnpj4-resultado"></p>
-    </div>
-
-    
 </body>
 </html>
