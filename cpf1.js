@@ -44,5 +44,5 @@ console.log(gerarCpf1());
 // Exemplo de uso
 function exibirCpf1() {
     const cpfGerado = gerarCpf1();
-    document.getElementById("cpf1-resultado").innerText = `: ${cpfGerado}`;
+    document.getElementById("cpf1-resultado").innerText = `${cpfGerado}`;
 }

@@ -68,5 +68,5 @@ console.log(gerarCnpj4());
 // Exemplo de uso
 function exibirCnpj4() {
     const cpfGerado = gerarCnpj4();
-    document.getElementById("cnpj4-resultado").innerText = `: ${cpfGerado}`;
+    document.getElementById("cnpj4-resultado").innerText = `${cpfGerado}`;
 }

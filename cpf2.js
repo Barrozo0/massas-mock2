@@ -80,8 +80,8 @@ function exibirCpf2() {
         const primeiroDv = parseInt(cpfGerado2[9]); // Penúltimo dígito no CPF gerado
 
         if (primeiroDv === 7 || primeiroDv === 9) {
-            document.getElementById("cpf2-resultado").innerText = `AVISO: O CPF gerado tem o penúltimo dígito verificador como ${primeiroDv}. CPF: ${cpfGerado2}, GERE UM NOVO CPF!`;
+            document.getElementById("cpf2-resultado").innerText = `O primeiro dígito verificador é ${primeiroDv}. GERE UM NOVO CPF!`;
         } else {
-            document.getElementById("cpf2-resultado").innerText = `: ${cpfGerado2}`;
+            document.getElementById("cpf2-resultado").innerText = `${cpfGerado2}`;
         }
     }

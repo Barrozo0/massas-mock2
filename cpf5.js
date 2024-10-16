@@ -36,5 +36,5 @@ function gerarCpf5() {
 console.log("CPF Gerado:", gerarCpf5());
 function exibirCpf5() {
     const cpfGerado = gerarCpf5();
-    document.getElementById("cpf5-resultado").innerText = `: ${cpfGerado}`;
+    document.getElementById("cpf5-resultado").innerText = `${cpfGerado}`;
 }

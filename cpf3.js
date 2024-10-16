@@ -76,8 +76,8 @@
         const primeiroDv = parseInt(cpfGerado3[9]); // Penúltimo dígito no CPF gerado
 
         if (primeiroDv === 7 || primeiroDv === 9) {
-            document.getElementById("cpf3-resultado").innerText = `AVISO: O CPF gerado tem o penúltimo dígito verificador como ${primeiroDv}. CPF: ${cpfGerado3}, GERE UM NOVO CPF!`;
+            document.getElementById("cpf3-resultado").innerText = `O primeiro dígito verificador é ${primeiroDv}. GERE UM NOVO CPF!`;
         } else {
-            document.getElementById("cpf3-resultado").innerText = `: ${cpfGerado3}`;
+            document.getElementById("cpf3-resultado").innerText = `${cpfGerado3}`;
         }
     }
